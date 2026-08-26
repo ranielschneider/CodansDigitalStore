@@ -48,6 +48,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+
     // Compose
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)

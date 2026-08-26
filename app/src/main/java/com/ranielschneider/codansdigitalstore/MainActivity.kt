@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import com.ranielschneider.codansdigitalstore.features.home.presentation.HomeScreen
+import com.ranielschneider.codansdigitalstore.core.navigation.AppNavigation
 import com.ranielschneider.codansdigitalstore.ui.theme.CodansDigitalStoreTheme
 
 class MainActivity : ComponentActivity() {
@@ -16,17 +14,10 @@ class MainActivity : ComponentActivity() {
 
         setContent {
            CodansDigitalStoreTheme {
-               HomeScreen()
+               AppNavigation()
            }
         }
     }
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun HomeScreenPreview(){
-    CodansDigitalStoreTheme {
-        HomeScreen()
-    }
-}

@@ -14,30 +14,35 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ranielschneider.codansdigitalstore.ui.theme.CodansDigitalStoreTheme
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onProductsClick: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Center
     ) {
-
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             HomeButton(
                 text = "Produtos",
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                onClick = onProductsClick
             )
 
             HomeButton(
                 text = "Carrinho",
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                onClick = {}
             )
         }
 
@@ -51,12 +56,14 @@ fun HomeScreen() {
         ) {
             HomeButton(
                 text = "Usuários",
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                onClick = {}
             )
 
             HomeButton(
                 text = "Postagens",
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                onClick = {}
             )
         }
     }
@@ -65,10 +72,11 @@ fun HomeScreen() {
 @Composable
 fun HomeButton(
     text: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
 ) {
     Button(
-        onClick = {},
+        onClick = onClick,
         modifier = modifier.height(95.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = Color(0xFFFF751F),
@@ -78,6 +86,16 @@ fun HomeButton(
         Text(
             text = text,
             fontSize = 18.sp
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+    CodansDigitalStoreTheme {
+        HomeScreen(
+            onProductsClick = {}
         )
     }
 }
