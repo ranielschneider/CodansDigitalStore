@@ -2,8 +2,9 @@ package com.ranielschneider.codansdigitalstore.features.products.data
 
 import com.ranielschneider.codansdigitalstore.features.products.domain.Product
 import com.ranielschneider.codansdigitalstore.features.products.domain.ProductRepository
+import javax.inject.Inject
 
-class ProductRepositoryImpl(
+class ProductRepositoryImpl @Inject constructor(
     private val api: ProductApi
 ) : ProductRepository {
 
