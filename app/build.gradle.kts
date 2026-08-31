@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.coil.compose)
 
     // Android
     implementation(libs.androidx.activity.compose)
