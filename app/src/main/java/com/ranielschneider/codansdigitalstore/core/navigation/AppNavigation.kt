@@ -29,6 +29,9 @@ fun AppNavigation() {
 
         composable("products") {
             ProductsScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                },
                 viewModel = hiltViewModel(),
                 onProductClick = { productId ->
                     navController.navigate("product/$productId")
@@ -45,6 +48,9 @@ fun AppNavigation() {
             )
         ) {
             ProductDetailScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                },
                 viewModel = hiltViewModel()
             )
         }
