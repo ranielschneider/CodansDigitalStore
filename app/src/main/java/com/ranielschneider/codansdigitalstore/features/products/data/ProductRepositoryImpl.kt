@@ -19,4 +19,16 @@ class ProductRepositoryImpl @Inject constructor(
             )
         }
     }
+
+    override suspend fun getProductById(id: Int): Product {
+        val dto = api.getProductById(id)
+
+        return Product(
+            id = dto.id,
+            title = dto.title,
+            description = dto.description,
+            price = dto.price,
+            thumbnail = dto.thumbnail
+        )
+    }
 }

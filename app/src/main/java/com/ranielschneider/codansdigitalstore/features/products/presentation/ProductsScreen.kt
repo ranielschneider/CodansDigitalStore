@@ -1,5 +1,6 @@
 package com.ranielschneider.codansdigitalstore.features.products.presentation
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,7 +22,8 @@ import coil.compose.AsyncImage
 
 @Composable
 fun ProductsScreen(
-    viewModel: ProductsViewModel
+    viewModel: ProductsViewModel,
+    onProductClick: (Int) -> Unit
 ) {
     val products by viewModel.products.collectAsState()
 
@@ -39,7 +41,10 @@ fun ProductsScreen(
             ProductCard(
                 title = product.title,
                 price = product.price,
-                thumbnail = product.thumbnail
+                thumbnail = product.thumbnail,
+                onClick = {
+                    onProductClick(product.id)
+                }
             )
         }
     }
@@ -49,10 +54,15 @@ fun ProductsScreen(
 fun ProductCard(
     title: String,
     price: Double,
-    thumbnail: String
+    thumbnail: String,
+    onClick: () -> Unit
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                onClick()
+            }
     ) {
         Row(
             modifier = Modifier.padding(16.dp)
@@ -66,13 +76,8 @@ fun ProductCard(
             Column(
                 modifier = Modifier.padding(start = 16.dp)
             ) {
-                Text(
-                    text = title
-                )
-
-                Text(
-                    text = "€ $price"
-                )
+                Text(text = title)
+                Text(text = "€ $price")
             }
         }
     }
