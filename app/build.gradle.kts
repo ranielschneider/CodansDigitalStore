@@ -8,11 +8,7 @@ plugins {
 android {
     namespace = "com.ranielschneider.codansdigitalstore"
 
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.ranielschneider.codansdigitalstore"
@@ -46,11 +42,16 @@ android {
 
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.coil.compose)
+    implementation("androidx.compose.material:material-icons-extended")
 
     // Android
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
 
     // Compose
     implementation(libs.androidx.compose.material3)
@@ -60,6 +61,7 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
 
     // Retrofit
