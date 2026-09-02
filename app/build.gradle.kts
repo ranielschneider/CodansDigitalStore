@@ -43,6 +43,7 @@ android {
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.coil.compose)
+    implementation("androidx.compose.material:material-icons-extended")
 
     // Android
     implementation(libs.androidx.activity.compose)
