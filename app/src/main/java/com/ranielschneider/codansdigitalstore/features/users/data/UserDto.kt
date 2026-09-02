@@ -1,9 +1,16 @@
 package com.ranielschneider.codansdigitalstore.features.users.data
 
-data class UserDto (
+import com.google.gson.annotations.SerializedName
+
+data class UserDto(
     val id: Int,
+
+    @SerializedName("firstName")
     val primeiroNome: String,
+
+    @SerializedName("lastName")
     val ultimoNome: String,
+
     val email: String,
-    val image: Int
+    val image: String
 )

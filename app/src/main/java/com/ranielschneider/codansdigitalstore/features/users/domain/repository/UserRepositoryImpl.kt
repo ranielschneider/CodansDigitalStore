@@ -3,8 +3,9 @@ package com.ranielschneider.codansdigitalstore.features.users.domain.repository
 import com.ranielschneider.codansdigitalstore.features.users.data.UserApi
 import com.ranielschneider.codansdigitalstore.features.users.data.toDomain
 import com.ranielschneider.codansdigitalstore.features.users.domain.User
+import javax.inject.Inject
 
-class UserRepositoryImpl(
+class UserRepositoryImpl @Inject constructor(
     private val api: UserApi
 ) : UserRepository {
 
