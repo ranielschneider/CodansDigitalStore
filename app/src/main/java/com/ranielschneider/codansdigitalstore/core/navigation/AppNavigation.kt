@@ -10,6 +10,7 @@ import androidx.navigation.navArgument
 import com.ranielschneider.codansdigitalstore.features.home.presentation.HomeScreen
 import com.ranielschneider.codansdigitalstore.features.products.presentation.ProductDetailScreen
 import com.ranielschneider.codansdigitalstore.features.products.presentation.ProductsScreen
+import com.ranielschneider.codansdigitalstore.features.users.presentation.UserScreen
 
 @Composable
 fun AppNavigation() {
@@ -23,6 +24,16 @@ fun AppNavigation() {
             HomeScreen(
                 onProductsClick = {
                     navController.navigate("products")
+                },
+                onUserClick = {
+                    navController.navigate("users")
+                }
+            )
+        }
+        composable("users") {
+            UserScreen(
+                onBackClick = {
+                    navController.popBackStack()
                 }
             )
         }

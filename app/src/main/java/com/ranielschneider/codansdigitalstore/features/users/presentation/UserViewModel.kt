@@ -9,9 +9,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 
-class UserViewModel(
+@HiltViewModel
+class UserViewModel @Inject constructor(
     private val repository: UserRepository
 ) : ViewModel() {
      var users by mutableStateOf<List<User>>(emptyList())
