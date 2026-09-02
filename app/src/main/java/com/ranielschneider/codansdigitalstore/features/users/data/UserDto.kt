@@ -4,5 +4,6 @@ data class UserDto (
     val id: Int,
     val primeiroNome: String,
     val ultimoNome: String,
-    val email: String
+    val email: String,
+    val image: Int
 )
