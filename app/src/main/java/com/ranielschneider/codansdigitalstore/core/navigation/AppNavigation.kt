@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.ranielschneider.codansdigitalstore.features.cart.presentation.CartScreen
 import com.ranielschneider.codansdigitalstore.features.home.presentation.HomeScreen
 import com.ranielschneider.codansdigitalstore.features.products.presentation.ProductDetailScreen
 import com.ranielschneider.codansdigitalstore.features.products.presentation.ProductsScreen
@@ -27,6 +28,9 @@ fun AppNavigation() {
                 },
                 onUserClick = {
                     navController.navigate("users")
+                },
+                onCartClick = {
+                    navController.navigate("cart")
                 }
             )
         }
@@ -46,6 +50,13 @@ fun AppNavigation() {
                 viewModel = hiltViewModel(),
                 onProductClick = { productId ->
                     navController.navigate("product/$productId")
+                }
+            )
+        }
+        composable("cart") {
+            CartScreen(
+                onBackClick = {
+                    navController.popBackStack()
                 }
             )
         }
