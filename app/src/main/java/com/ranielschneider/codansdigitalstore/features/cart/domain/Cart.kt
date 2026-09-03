@@ -6,7 +6,7 @@ data class Cart(
     val idCart: Int,
     val totalCart: Double,
     val totalProductsCart: Int,
-    val productsCart: List<ProductCartItem>
+    val productsCart: List<ProductCartItem> = emptyList()
 ): Serializable
 
 
