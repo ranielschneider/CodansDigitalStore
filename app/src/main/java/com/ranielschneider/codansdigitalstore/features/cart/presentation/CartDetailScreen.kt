@@ -1,9 +1,11 @@
 package com.ranielschneider.codansdigitalstore.features.cart.presentation.details
 
+import android.R
 import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -16,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -65,12 +68,12 @@ fun CartDetailsContent(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(0xFFF0E8FF))
+                    //.background(Color(0xFFF0E8FF))
             ) {
                 TopAppBar(
                     title = {
                         Text(
-                            text = if (cart != null) "Cart #${cart.idCart}" else "Detalhes do Carrinho",
+                            text = if (cart != null) "Carrinho #${cart.idCart}" else "Detalhes do Carrinho",
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onBackground
@@ -91,10 +94,10 @@ fun CartDetailsContent(
                     )
                 )
 
-                HorizontalDivider(
+                /*HorizontalDivider(
                     thickness = 1.dp,
                     color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f)
-                )
+                )*/
             }
         }
     ) { innerPadding ->
@@ -125,17 +128,31 @@ fun CartDetailsContent(
                         .padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Icon(
-                        imageVector = Icons.Filled.ShoppingCart,
-                        contentDescription = "Cart",
-                        tint = PurplePrimary,
+                    Card(
                         modifier = Modifier
-                            .size(80.dp)
-                            .padding(bottom = 16.dp)
-                    )
+                            .fillMaxWidth()
+                            .height(124.dp),
+                        shape = RoundedCornerShape(12.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color.White),
+                        elevation = CardDefaults.cardElevation(2.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.ShoppingCart,
+                                contentDescription = "Cart",
+                                tint = PurplePrimary,
+                                modifier = Modifier.size(58.dp) // Tamanho ideal para ícones em cards dessa altura
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
 
                     Text(
-                        text = "### Product Details (${cart.productsCart.size} itens) ###",
+                        text = "Detalhes do Produto (${cart.productsCart.size} itens) ",
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(bottom = 16.dp),
@@ -165,12 +182,12 @@ private fun gerarConteudoProdutos(cart: Cart): String {
         detalhes.append("#$num - ID: ${product.id}\n")
         detalhes.append(" - Product: ${product.title}\n")
         detalhes.append(" - Qty: ${product.quantity}\n")
-        detalhes.append(" - Price/Unit: ${product.price}\n")
-        detalhes.append(" - Subtotal: ${product.total}\n\n")
+        detalhes.append(" - Price/Unit: $ ${String.format(java.util.Locale.US, "%,.2f", product.price)}\n")
+        detalhes.append(" - Subtotal: $ ${String.format(java.util.Locale.US, "%,.2f", product.total)}\n\n")
     }
 
     detalhes.append("----------------------------\n")
-    detalhes.append("TOTAL: ${cart.totalCart}\n\n")
+    detalhes.append("TOTAL: $ ${String.format(java.util.Locale.US, "%,.2f", cart.totalCart)}\n\n")
 
     return detalhes.toString()
 }

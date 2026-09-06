@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
@@ -85,12 +86,12 @@ fun CartContent(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(0xFFF0E8FF)) // Aplica o fundo roxo claro na barra inteira
+                    //.background(Color(0xFFF0E8FF)) // Aplica o fundo roxo claro na barra inteira
             ) {
                 TopAppBar(
                     title = {
                         Text(
-                            text = "Cart",
+                            text = "Carrinho",
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onBackground
@@ -112,10 +113,10 @@ fun CartContent(
                 )
 
                 // Linha divisória logo abaixo da barra
-                HorizontalDivider(
+                /*HorizontalDivider(
                     thickness = 1.dp,
                     color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f)
-                )
+                )*/
             }
         }
 
@@ -180,15 +181,15 @@ fun CartContent(
 
                                     Column {
                                         Text(
-                                            text = "Cart ID: ${cart.idCart}",
+                                            text = "ID: ${cart.idCart}",
                                             style = MaterialTheme.typography.titleMedium
                                         )
                                         Text(
-                                            text = "Total: ${cart.totalCart}",
+                                            text = "Total: $ ${String.format(java.util.Locale.US, "%,.2f", cart.totalCart)}",
                                             style = MaterialTheme.typography.bodyMedium
                                         )
                                         Text(
-                                            text = "Items: ${cart.totalProductsCart}",
+                                            text = "Itens: ${cart.totalProductsCart}",
                                             style = MaterialTheme.typography.bodySmall
                                         )
                                     }
