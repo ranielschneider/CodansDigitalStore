@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ranielschneider.codansdigitalstore.features.home.presentation.HomeScreen
+import com.ranielschneider.codansdigitalstore.features.posts.presentation.PostsScreen
 import com.ranielschneider.codansdigitalstore.features.products.presentation.ProductDetailScreen
 import com.ranielschneider.codansdigitalstore.features.products.presentation.ProductsScreen
 import com.ranielschneider.codansdigitalstore.features.users.presentation.UserScreen
@@ -27,11 +28,21 @@ fun AppNavigation() {
                 },
                 onUserClick = {
                     navController.navigate("users")
+                },
+                onPostsClick = {
+                    navController.navigate("posts")
                 }
             )
         }
         composable("users") {
             UserScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable("posts") {
+            PostsScreen(
                 onBackClick = {
                     navController.popBackStack()
                 }

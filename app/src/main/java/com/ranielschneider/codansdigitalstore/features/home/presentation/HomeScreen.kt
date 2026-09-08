@@ -43,7 +43,8 @@ import androidx.compose.foundation.layout.offset
 @Composable
 fun HomeScreen(
     onProductsClick: () -> Unit,
-    onUserClick: () -> Unit
+    onUserClick: () -> Unit,
+    onPostsClick: () -> Unit
 ) {
     val backgroundBrush = Brush.verticalGradient(
         colors = listOf(
@@ -172,7 +173,7 @@ fun HomeScreen(
                     description = "Veja as postagens\ndisponíveis.",
                     icon = Icons.Outlined.Description,
                     modifier = Modifier.weight(1f),
-                    onClick = {}
+                    onClick = onPostsClick
                 )
             }
         }
@@ -284,7 +285,8 @@ fun HomeScreenPreview() {
     CodansDigitalStoreTheme {
         HomeScreen(
             onProductsClick = {},
-            onUserClick = {}
+            onUserClick = {},
+            onPostsClick = {}
         )
     }
 }

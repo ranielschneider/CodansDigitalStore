@@ -14,6 +14,9 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+import com.ranielschneider.codansdigitalstore.features.posts.data.PostApi
+import com.ranielschneider.codansdigitalstore.features.posts.domain.repository.PostRepository
+import com.ranielschneider.codansdigitalstore.features.posts.domain.repository.PostRepositoryImpl
 
 
 @Module
@@ -46,7 +49,19 @@ abstract class AppModule {
         ): ProductApi {
             return retrofit.create(ProductApi::class.java)
         }
+        @Provides
+        @Singleton
+        fun providePostApi(
+            retrofit: Retrofit
+        ): PostApi {
+            return retrofit.create(PostApi::class.java)
+        }
     }
+
+    @Binds
+    abstract fun bindPostRepository(
+        repository: PostRepositoryImpl
+    ): PostRepository
 
     @Binds
     abstract fun bindProductRepository(
