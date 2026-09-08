@@ -5,10 +5,10 @@ import retrofit2.http.Path
 
 interface ProductApi {
 
-    @GET("products")
+    @GET("productCarts")
     suspend fun getProducts(): ProductsResponseDto
 
-    @GET("products/{id}")
+    @GET("productCarts/{id}")
     suspend fun getProductById(
         @Path("id") id: Int
     ): ProductDto

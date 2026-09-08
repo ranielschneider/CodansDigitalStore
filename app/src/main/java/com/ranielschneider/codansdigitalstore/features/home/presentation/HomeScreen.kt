@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -34,17 +35,17 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.tooling.preview.Preview
 import com.ranielschneider.codansdigitalstore.ui.theme.CodansDigitalStoreTheme
-import androidx.compose.foundation.layout.offset
 
 @Composable
 fun HomeScreen(
     onProductsClick: () -> Unit,
     onUserClick: () -> Unit,
-    onPostsClick: () -> Unit
+    onPostsClick: () -> Unit,
+    onCartClick: () -> Unit
 ) {
     val backgroundBrush = Brush.verticalGradient(
         colors = listOf(
@@ -59,8 +60,6 @@ fun HomeScreen(
             .fillMaxSize()
             .background(backgroundBrush)
     ) {
-
-        // Decoração superior
         Box(
             modifier = Modifier
                 .size(180.dp)
@@ -72,7 +71,6 @@ fun HomeScreen(
                 )
         )
 
-        // Decoração inferior
         Box(
             modifier = Modifier
                 .size(190.dp)
@@ -93,7 +91,6 @@ fun HomeScreen(
                     vertical = 20.dp
                 )
         ) {
-
             Spacer(
                 modifier = Modifier.height(24.dp)
             )
@@ -148,7 +145,7 @@ fun HomeScreen(
                     description = "Veja os produtos\nadicionados ao carrinho.",
                     icon = Icons.Outlined.ShoppingCart,
                     modifier = Modifier.weight(1f),
-                    onClick = {}
+                    onClick = onCartClick
                 )
             }
 
@@ -212,7 +209,6 @@ fun HomeMenuCard(
                 .padding(18.dp),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-
             Box(
                 modifier = Modifier
                     .size(58.dp)
@@ -286,7 +282,8 @@ fun HomeScreenPreview() {
         HomeScreen(
             onProductsClick = {},
             onUserClick = {},
-            onPostsClick = {}
+            onPostsClick = {},
+            onCartClick = {}
         )
     }
 }
