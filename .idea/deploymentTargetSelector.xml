@@ -6,6 +6,14 @@
         <option name="selectionMode" value="DROPDOWN" />
         <DialogSelection />
       </SelectionState>
+      <SelectionState runConfigName="UserScreenPreview">
+        <option name="selectionMode" value="DROPDOWN" />
+        <DialogSelection />
+      </SelectionState>
+      <SelectionState runConfigName="PostsScreenPreview">
+        <option name="selectionMode" value="DROPDOWN" />
+        <DialogSelection />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>

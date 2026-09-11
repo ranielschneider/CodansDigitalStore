@@ -13,6 +13,7 @@ import com.ranielschneider.codansdigitalstore.features.cart.presentation.CartScr
 import com.ranielschneider.codansdigitalstore.features.cart.presentation.CartViewModel
 import com.ranielschneider.codansdigitalstore.features.cart.presentation.details.CartDetailsScreen
 import com.ranielschneider.codansdigitalstore.features.home.presentation.HomeScreen
+import com.ranielschneider.codansdigitalstore.features.posts.presentation.PostsScreen
 import com.ranielschneider.codansdigitalstore.features.products.presentation.ProductDetailScreen
 import com.ranielschneider.codansdigitalstore.features.products.presentation.ProductsScreen
 import com.ranielschneider.codansdigitalstore.features.users.presentation.UserScreen
@@ -28,16 +29,20 @@ fun AppNavigation() {
         composable("home") {
             HomeScreen(
                 onProductsClick = {
-                    navController.navigate("productCarts")
+                    navController.navigate("products")
                 },
                 onUserClick = {
                     navController.navigate("users")
+                },
+                onPostsClick = {
+                    navController.navigate("posts")
                 },
                 onCartClick = {
                     navController.navigate("cart")
                 }
             )
         }
+
         composable("users") {
             UserScreen(
                 onBackClick = {
@@ -46,7 +51,15 @@ fun AppNavigation() {
             )
         }
 
-        composable("productCarts") {
+        composable("posts") {
+            PostsScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable("products") {
             ProductsScreen(
                 onBackClick = {
                     navController.popBackStack()
@@ -57,6 +70,7 @@ fun AppNavigation() {
                 }
             )
         }
+
         composable("cart") {
             CartScreen(
                 onBackClick = {
@@ -69,7 +83,6 @@ fun AppNavigation() {
             )
         }
 
-        // 2. Nova rota adicionada para a tela de Detalhes do Carrinho com argumento
         composable(
             route = "cart_detail/{cartId}",
             arguments = listOf(
@@ -77,7 +90,7 @@ fun AppNavigation() {
                     type = NavType.IntType
                 }
             )
-        ) {backStackEntry ->
+        ) { backStackEntry ->
             val cartId = backStackEntry.arguments?.getInt("cartId") ?: 0
 
             val sharedCartViewModel: CartViewModel = hiltViewModel()

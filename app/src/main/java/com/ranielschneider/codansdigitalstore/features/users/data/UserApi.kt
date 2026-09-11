@@ -3,7 +3,7 @@ import retrofit2.http.GET
 
 interface UserApi {
 
-    @GET("users")
+    @GET("users?limit=0")
     suspend fun getUsers(): UserResponseDto
 
 }
