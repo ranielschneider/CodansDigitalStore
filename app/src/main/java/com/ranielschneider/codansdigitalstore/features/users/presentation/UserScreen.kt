@@ -1,6 +1,7 @@
 package com.ranielschneider.codansdigitalstore.features.users.presentation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,14 +40,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.ranielschneider.codansdigitalstore.features.home.presentation.HomeScreen
 import com.ranielschneider.codansdigitalstore.features.users.domain.User
 import com.ranielschneider.codansdigitalstore.ui.theme.CodansDigitalStoreTheme
 
@@ -54,7 +53,8 @@ import com.ranielschneider.codansdigitalstore.ui.theme.CodansDigitalStoreTheme
 @Composable
 fun UserScreen(
     viewModel: UserViewModel = hiltViewModel(),
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onUserClick: (Int) -> Unit
 ) {
 
     LaunchedEffect(Unit) {
@@ -193,7 +193,10 @@ fun UserScreen(
                 ) { user ->
 
                     UserCard(
-                        user = user
+                        user = user,
+                        onClick = {
+                            onUserClick(user.id)
+                        }
                     )
                 }
             }
@@ -205,11 +208,16 @@ fun UserScreen(
 }
 @Composable
 fun UserCard(
-    user: com.ranielschneider.codansdigitalstore.features.users.domain.User
+    user: User,
+    onClick: () -> Unit
 ) {
 
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                onClick()
+            },
         shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
@@ -226,7 +234,7 @@ fun UserCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            // Avatar
+
             AsyncImage(
                 model = user.image,
                 contentDescription = user.nome,
@@ -310,7 +318,8 @@ fun UserCard(
 fun UserScreenPreview() {
     CodansDigitalStoreTheme {
         UserScreen(
-            onBackClick = {}
+            onBackClick = {},
+            onUserClick = {}
         )
     }
 }

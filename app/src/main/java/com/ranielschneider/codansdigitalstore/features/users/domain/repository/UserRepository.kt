@@ -5,4 +5,7 @@ import com.ranielschneider.codansdigitalstore.features.users.domain.User
 interface UserRepository {
 
      suspend fun getUsers(): List<User>
+
+     suspend fun getUserById(id: Int): User
+
 }
