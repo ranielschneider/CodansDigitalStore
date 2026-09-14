@@ -14,6 +14,7 @@ import com.ranielschneider.codansdigitalstore.features.cart.presentation.CartScr
 import com.ranielschneider.codansdigitalstore.features.cart.presentation.CartViewModel
 import com.ranielschneider.codansdigitalstore.features.cart.presentation.details.CartDetailsScreen
 import com.ranielschneider.codansdigitalstore.features.home.presentation.HomeScreen
+import com.ranielschneider.codansdigitalstore.features.posts.presentation.PostDetailsScreen
 import com.ranielschneider.codansdigitalstore.features.posts.presentation.PostsScreen
 import com.ranielschneider.codansdigitalstore.features.products.presentation.ProductDetailScreen
 import com.ranielschneider.codansdigitalstore.features.products.presentation.ProductsScreen
@@ -58,6 +59,43 @@ fun AppNavigation() {
 
         composable("posts") {
             PostsScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                },
+                onPostClick = { postId ->
+                    navController.navigate("post/$postId")
+                }
+            )
+        }
+        composable(
+            route = "post/{postId}",
+            arguments = listOf(
+                navArgument("postId") {
+                    type = NavType.IntType
+                }
+            )
+        ) { backStackEntry ->
+            val postId = backStackEntry.arguments?.getInt("postId") ?: 0
+
+            PostDetailsScreen(
+                postId = postId,
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(
+            route = "post/{postId}",
+            arguments = listOf(
+                navArgument("postId") {
+                    type = NavType.IntType
+                }
+            )
+        ) { backStackEntry ->
+            val postId = backStackEntry.arguments?.getInt("postId") ?: 0
+
+            PostDetailsScreen(
+                postId = postId,
                 onBackClick = {
                     navController.popBackStack()
                 }

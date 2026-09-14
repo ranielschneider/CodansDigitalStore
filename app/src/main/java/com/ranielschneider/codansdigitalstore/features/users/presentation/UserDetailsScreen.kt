@@ -421,7 +421,7 @@ private fun UserDetailScreenPreview() {
                 id = 1,
                 nome = "Thiago Castagnoli",
                 email = "aweawe@gmau.com",
-                image = "https://dummyjson.com/icon/emilys/128"
+                image = "f"
             ),
             onBackClick = {}
         )

@@ -31,4 +31,17 @@ class PostViewModel @Inject constructor(
             users = userRepository.getUsers()
         }
     }
+
+    var post by mutableStateOf<Post?>(null)
+        private set
+
+    fun getPostById(id: Int) {
+        viewModelScope.launch {
+            try {
+                post = repository.getPostById(id)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
 }
