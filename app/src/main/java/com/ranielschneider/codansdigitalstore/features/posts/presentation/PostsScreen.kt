@@ -110,7 +110,10 @@ fun PostsScreenContent(
                 )
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 40.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(

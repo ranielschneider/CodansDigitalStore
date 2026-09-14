@@ -100,7 +100,8 @@ private fun UserDetailContent(
                     .padding(horizontal = 20.dp, vertical = 16.dp)
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth()
+                        .padding(top = 40.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     IconButton(

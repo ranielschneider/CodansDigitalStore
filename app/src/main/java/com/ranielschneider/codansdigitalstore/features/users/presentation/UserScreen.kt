@@ -88,13 +88,15 @@ fun UserScreen(
                 .fillMaxSize()
                 .padding(
                     horizontal = 18.dp,
-                    vertical = 16.dp
+                    vertical = 16.dp,
+
                 )
         ) {
 
 
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .padding(top = 40.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
