@@ -4,4 +4,6 @@ import com.ranielschneider.codansdigitalstore.features.posts.domain.Post
 
 interface PostRepository {
     suspend fun getPosts(): List<Post>
+
+    suspend fun getPostById(id: Int): Post
 }

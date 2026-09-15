@@ -15,4 +15,8 @@ class UserRepositoryImpl @Inject constructor(
             .map { it.toDomain() }
     }
 
+    override suspend fun getUserById(id: Int): User {
+        return api.getUserById(id).toDomain()
+    }
+
 }

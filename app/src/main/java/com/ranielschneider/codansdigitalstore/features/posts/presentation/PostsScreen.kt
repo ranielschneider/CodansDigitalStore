@@ -2,6 +2,7 @@ package com.ranielschneider.codansdigitalstore.features.posts.presentation
 
 import com.ranielschneider.codansdigitalstore.features.posts.presentation.PostViewModel
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -53,7 +54,8 @@ import coil.compose.AsyncImage
 @Composable
 fun PostsScreen(
     viewModel: PostViewModel = hiltViewModel(),
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onPostClick: (Int) -> Unit
 ) {
     LaunchedEffect(Unit) {
         viewModel.getPosts()
@@ -65,7 +67,8 @@ fun PostsScreen(
         onBackClick = onBackClick,
         onRefresh = {
             viewModel.getPosts()
-        }
+        },
+        onPostClick = onPostClick
     )
 }
 
@@ -74,7 +77,8 @@ fun PostsScreenContent(
     posts: List<Post>,
     users: List<User>,
     onBackClick: () -> Unit,
-    onRefresh: () -> Unit
+    onRefresh: () -> Unit,
+    onPostClick: (Int) -> Unit
 ) {
     var searchText by remember {
         mutableStateOf("")
@@ -106,7 +110,10 @@ fun PostsScreenContent(
                 )
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 40.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(
@@ -194,7 +201,10 @@ fun PostsScreenContent(
                 ) { post ->
                     PostCard(
                         post = post,
-                        user = users.find { it.id == post.userId }
+                        user = users.find { it.id == post.userId },
+                        onClick = {
+                            onPostClick(post.id)
+                        }
                     )
                 }
             }
@@ -205,10 +215,13 @@ fun PostsScreenContent(
 @Composable
 fun PostCard(
     post: Post,
-    user: User?
+    user: User?,
+    onClick: () -> Unit
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.
+        fillMaxWidth()
+            .clickable(onClick = onClick),
         shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
@@ -347,7 +360,8 @@ fun PostsScreenPreview() {
             ),
             users = emptyList(),
             onBackClick = {},
-            onRefresh = {}
+            onRefresh = {},
+            onPostClick = {}
         )
     }
 }

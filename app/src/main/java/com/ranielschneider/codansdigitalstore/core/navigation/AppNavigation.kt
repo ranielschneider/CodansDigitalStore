@@ -1,5 +1,6 @@
 package com.ranielschneider.codansdigitalstore.core.navigation
 
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -13,9 +14,11 @@ import com.ranielschneider.codansdigitalstore.features.cart.presentation.CartScr
 import com.ranielschneider.codansdigitalstore.features.cart.presentation.CartViewModel
 import com.ranielschneider.codansdigitalstore.features.cart.presentation.details.CartDetailsScreen
 import com.ranielschneider.codansdigitalstore.features.home.presentation.HomeScreen
+import com.ranielschneider.codansdigitalstore.features.posts.presentation.PostDetailsScreen
 import com.ranielschneider.codansdigitalstore.features.posts.presentation.PostsScreen
 import com.ranielschneider.codansdigitalstore.features.products.presentation.ProductDetailScreen
 import com.ranielschneider.codansdigitalstore.features.products.presentation.ProductsScreen
+import com.ranielschneider.codansdigitalstore.features.users.presentation.UserDetailScreen
 import com.ranielschneider.codansdigitalstore.features.users.presentation.UserScreen
 
 @Composable
@@ -47,12 +50,36 @@ fun AppNavigation() {
             UserScreen(
                 onBackClick = {
                     navController.popBackStack()
+                },
+                onUserClick = { userId ->
+                    navController.navigate("user/$userId")
                 }
             )
         }
 
         composable("posts") {
             PostsScreen(
+                onBackClick = {
+                    navController.popBackStack()
+                },
+                onPostClick = { postId ->
+                    navController.navigate("post/$postId")
+                }
+            )
+        }
+
+        composable(
+            route = "post/{postId}",
+            arguments = listOf(
+                navArgument("postId") {
+                    type = NavType.IntType
+                }
+            )
+        ) { backStackEntry ->
+            val postId = backStackEntry.arguments?.getInt("postId") ?: 0
+
+            PostDetailsScreen(
+                postId = postId,
                 onBackClick = {
                     navController.popBackStack()
                 }
@@ -99,6 +126,19 @@ fun AppNavigation() {
 
             CartDetailsScreen(
                 cart = cartSelected,
+                onBackClick = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable("user/{userId}") { backStackEntry ->
+
+            val userId = backStackEntry.arguments
+                ?.getString("userId")
+                ?.toIntOrNull() ?: 0
+
+            UserDetailScreen(
+                userId = userId,
                 onBackClick = {
                     navController.popBackStack()
                 }

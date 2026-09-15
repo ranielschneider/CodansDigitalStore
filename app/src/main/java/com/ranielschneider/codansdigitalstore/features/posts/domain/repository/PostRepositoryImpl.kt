@@ -14,4 +14,7 @@ class PostRepositoryImpl @Inject constructor(
             .posts
             .map { it.toDomain() }
     }
+    override suspend fun getPostById(id: Int): Post {
+        return api.getPostById(id).toDomain()
+    }
 }
