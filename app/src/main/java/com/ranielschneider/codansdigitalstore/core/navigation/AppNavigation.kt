@@ -67,23 +67,7 @@ fun AppNavigation() {
                 }
             )
         }
-        composable(
-            route = "post/{postId}",
-            arguments = listOf(
-                navArgument("postId") {
-                    type = NavType.IntType
-                }
-            )
-        ) { backStackEntry ->
-            val postId = backStackEntry.arguments?.getInt("postId") ?: 0
 
-            PostDetailsScreen(
-                postId = postId,
-                onBackClick = {
-                    navController.popBackStack()
-                }
-            )
-        }
         composable(
             route = "post/{postId}",
             arguments = listOf(
